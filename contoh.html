@@ -1,0 +1,2564 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yan Qing Mandarin Center</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #A32821;
+            --secondary-color: #ff6b6b;
+            --accent-color: #4ecdc4;
+            --success-color: #45b7d1;
+            --warning-color: #f9ca24;
+            --light-bg: #f8f9ff;
+            --card-shadow: 0 10px 30px rgba(163, 40, 33, 0.1);
+            --border-radius: 15px;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Fira Sans', sans-serif;
+            font-weight: 600;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #d63384 100%);
+            padding: 1rem 0;
+            box-shadow: var(--card-shadow);
+        }
+
+        .navbar-brand {
+            font-family: 'Fira Sans', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: white !important;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500;
+            margin: 0 0.5rem;
+            padding: 0.5rem 1rem !important;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: rgba(255, 255, 255, 0.2);
+            color: white !important;
+            transform: translateY(-2px);
+        }
+
+        .container-fluid {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }
+
+        .welcome-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            color: white;
+            box-shadow: var(--card-shadow);
+        }
+
+        .stats-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--card-shadow);
+            border: none;
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+
+        .stats-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stats-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stats-label {
+            color: #666;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .card-primary .stats-number { color: var(--primary-color); }
+        .card-secondary .stats-number { color: var(--secondary-color); }
+        .card-success .stats-number { color: var(--success-color); }
+        .card-warning .stats-number { color: var(--warning-color); }
+
+        .content-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
+        }
+
+        .schedule-item {
+            background: var(--light-bg);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .video-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #d63384 100%);
+            border: none;
+            border-radius: 25px;
+            padding: 0.7rem 2rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(163, 40, 33, 0.3);
+        }
+
+        .btn-outline-primary {
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            border-radius: 25px;
+            padding: 0.7rem 2rem;
+            font-weight: 500;
+        }
+
+        .table {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .table thead th {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            font-weight: 600;
+        }
+
+        .badge {
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: 500;
+        }
+
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 3rem;
+            box-shadow: var(--card-shadow);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            padding: 0.8rem 1rem;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(163, 40, 33, 0.25);
+        }
+
+        .role-selector {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .role-btn {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid #e9ecef;
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .role-btn.active {
+            border-color: var(--primary-color);
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .role-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .page-content {
+            background: white;
+            border-radius: var(--border-radius);
+            min-height: 80vh;
+        }
+
+        .icon-large {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.7;
+        }
+
+        .modal-content {
+            border-radius: var(--border-radius);
+            border: none;
+            box-shadow: var(--card-shadow);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #d63384 100%);
+            color: white;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+        }
+
+        .progress-bar-container {
+            background: #e9ecef;
+            border-radius: 10px;
+            height: 8px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            background: linear-gradient(135deg, var(--success-color) 0%, #45b7d1 100%);
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        .student-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .upload-area {
+            border: 2px dashed var(--primary-color);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            background: #f8f9ff;
+            transition: all 0.3s ease;
+        }
+
+        .upload-area:hover {
+            background: #e9ecff;
+        }
+
+        .material-item {
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="loginPage" class="login-container">
+        <div class="login-card">
+            <div class="text-center mb-4">
+                <h2 class="text-primary">Yan Qing</h2>
+                <p class="text-muted">Selamat datang! Silakan login untuk melanjutkan</p>
+            </div>
+            
+            <div class="role-selector">
+                <div class="role-btn active" data-role="laoshi">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <div>Laoshi</div>
+                </div>
+                <div class="role-btn" data-role="murid">
+                    <i class="fas fa-user-graduate"></i>
+                    <div>Murid</div>
+                </div>
+                <div class="role-btn" data-role="admin">
+                    <i class="fas fa-user-cog"></i>
+                    <div>Admin</div>
+                </div>
+            </div>
+
+            <form id="loginForm">
+                <div class="mb-3">
+                    <label class="form-label">ID Pengguna</label>
+                    <input type="text" class="form-control" id="userId" required>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">
+                    <i class="fas fa-sign-in-alt me-2"></i>Login
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div id="mainApp" class="hidden">
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <i class="fas fa-graduation-cap me-2"></i>Yan Qing
+                </a>
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto" id="navMenu">
+                        <!-- Menu items will be populated by JavaScript -->
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-user-circle me-1"></i>
+                                <span id="userDisplayName">User</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#" onclick="logout()">
+                                    <i class="fas fa-sign-out-alt me-2"></i>Logout
+                                </a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="container-fluid">
+            <!-- Dashboard Content -->
+            <div id="dashboardContent" class="page-section">
+                <div class="welcome-card">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h2 class="mb-3">Selamat Datang, <span id="welcomeName">User</span>!</h2>
+                            <p class="mb-0">Semoga hari ini menjadi hari yang produktif dalam pembelajaran Mandarin</p>
+                        </div>
+                        <div class="col-md-4 text-end">
+                            <i class="fas fa-calendar-alt" style="font-size: 4rem; opacity: 0.3;"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="row" id="statsCards">
+                    <!-- Stats will be populated by JavaScript -->
+                </div>
+
+                <!-- Quick Actions and Recent Activity -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="content-card">
+                            <h4 class="mb-3">
+                                <i class="fas fa-bolt text-warning me-2"></i>Aksi Cepat
+                            </h4>
+                            <div id="quickActions">
+                                <!-- Quick actions will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="content-card">
+                            <h4 class="mb-3">
+                                <i class="fas fa-clock text-info me-2"></i>Aktivitas Terbaru
+                            </h4>
+                            <div id="recentActivity">
+                                <!-- Recent activities will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Murid Content (Laoshi only) -->
+            <div id="datamuridContent" class="page-section hidden">
+                <div class="content-card">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h3>
+                            <i class="fas fa-users text-primary me-2"></i>Data Murid Saya
+                        </h3>
+                        <button class="btn btn-primary" onclick="showAddStudentModal()">
+                            <i class="fas fa-user-plus me-2"></i>Tambah Murid
+                        </button>
+                    </div>
+                    <div id="studentList">
+                        <!-- Student data will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Jadwal Pertemuan Content -->
+            <div id="jadwalContent" class="page-section hidden">
+                <div class="content-card">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h3>
+                            <i class="fas fa-calendar-week text-primary me-2"></i>Jadwal Pertemuan
+                        </h3>
+                        <div class="d-flex gap-2">
+                            <div class="d-flex align-items-center me-3">
+                                <label class="form-label me-2 mb-0">Filter:</label>
+                                <select class="form-select form-select-sm me-2" id="scheduleMonthFilter" onchange="filterSchedule()">
+                                    <option value="">Semua Bulan</option>
+                                    <option value="01">Januari</option>
+                                    <option value="02">Februari</option>
+                                    <option value="03">Maret</option>
+                                    <option value="04">April</option>
+                                    <option value="05">Mei</option>
+                                    <option value="06">Juni</option>
+                                    <option value="07">Juli</option>
+                                    <option value="08">Agustus</option>
+                                    <option value="09">September</option>
+                                    <option value="10">Oktober</option>
+                                    <option value="11">November</option>
+                                    <option value="12">Desember</option>
+                                </select>
+                                <input type="date" class="form-control form-control-sm" id="scheduleDateFilter" onchange="filterSchedule()">
+                            </div>
+                            <button class="btn btn-primary" onclick="showAddScheduleModal()">
+                                <i class="fas fa-plus me-2"></i>Tambah Jadwal
+                            </button>
+                        </div>
+                    </div>
+                    <div id="scheduleList">
+                        <!-- Schedule items will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Kelas Content -->
+            <div id="videoContent" class="page-section hidden">
+                <div class="content-card">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h3>
+                            <i class="fas fa-video text-primary me-2"></i>Video Kelas
+                        </h3>
+                        <button class="btn btn-primary" onclick="showUploadVideoModal()">
+                            <i class="fas fa-upload me-2"></i>Upload Video
+                        </button>
+                    </div>
+                    <div class="row" id="videoList">
+                        <!-- Video items will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Report Harian Content -->
+            <div id="reportContent" class="page-section hidden">
+                <div class="content-card">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h3>
+                            <i class="fas fa-clipboard-list text-primary me-2"></i>Report Harian
+                        </h3>
+                        <div class="d-flex gap-2">
+                            <div class="d-flex align-items-center me-3">
+                                <label class="form-label me-2 mb-0">Filter:</label>
+                                <select class="form-select form-select-sm me-2" id="reportMonthFilter" onchange="filterReport()">
+                                    <option value="">Semua Bulan</option>
+                                    <option value="01">Januari</option>
+                                    <option value="02">Februari</option>
+                                    <option value="03">Maret</option>
+                                    <option value="04">April</option>
+                                    <option value="05">Mei</option>
+                                    <option value="06">Juni</option>
+                                    <option value="07">Juli</option>
+                                    <option value="08">Agustus</option>
+                                    <option value="09">September</option>
+                                    <option value="10">Oktober</option>
+                                    <option value="11">November</option>
+                                    <option value="12">Desember</option>
+                                </select>
+                                <input type="date" class="form-control form-control-sm" id="reportDateFilter" onchange="filterReport()">
+                            </div>
+                               <div></div>
+                            <button class="btn btn-primary me-2" onclick="showCreateReportModal()">
+                                <i class="fas fa-plus me-2"></i>Buat Report
+                            </button>
+                            <button class="btn btn-outline-primary" onclick="openGoogleForm()">
+                                <i class="fab fa-google me-2"></i>Google Form
+                            </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="reportList">
+                        <!-- Report items will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Materi Belajar Content (Murid & Admin only) -->
+            <div id="materiContent" class="page-section hidden">
+                <div class="content-card">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h3>
+                            <i class="fas fa-book text-primary me-2"></i>Materi Belajar
+                        </h3>
+                        <div class="d-flex gap-2">
+                            <div class="d-flex align-items-center me-3">
+                                <label class="form-label me-2 mb-0">Filter:</label>
+                                <select class="form-select form-select-sm me-2" id="materialLevelFilter" onchange="filterMaterial()">
+                                    <option value="">Semua Level</option>
+                                    <option value="Beginner">Beginner</option>
+                                    <option value="Intermediate">Intermediate</option>
+                                    <option value="Advanced">Advanced</option>
+                                </select>
+                                <select class="form-select form-select-sm" id="materialTypeFilter" onchange="filterMaterial()">
+                                    <option value="">Semua Tipe</option>
+                                    <option value="PDF">PDF</option>
+                                    <option value="Video">Video</option>
+                                    <option value="Audio">Audio</option>
+                                    <option value="Link">Link</option>
+                                </select>
+                            </div>
+                        <div id="materiActions">
+                            <!-- Actions will be populated by JavaScript based on role -->
+                        </div>
+                </div>
+
+                    </div>
+                    <div class="row" id="materiList">
+                        <!-- Learning materials will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pengguna Content (Admin only) -->
+            <div id="penggunaContent" class="page-section hidden">
+                <div class="content-card">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h3>
+                            <i class="fas fa-users text-primary me-2"></i>Manajemen Pengguna
+                        </h3>
+                        <button class="btn btn-primary" onclick="showAddUserModal()">
+                            <i class="fas fa-user-plus me-2"></i>Tambah Pengguna
+                        </button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table" id="usersTable">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nama</th>
+                                    <th>Role</th>
+                                    <th>Status/Paket</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- User data will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    
+    <!-- Add Student Modal (Laoshi) -->
+    <div class="modal fade" id="addStudentModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-user-plus me-2"></i>Tambah Murid Baru
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addStudentForm">
+                        <div class="mb-3">
+                            <label class="form-label">Nama Murid</label>
+                            <input type="text" class="form-control" id="studentName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Paket Kelas</label>
+                            <select class="form-control" id="studentPackage" required>
+                                <option value="">Pilih Paket</option>
+                                <option value="reguler">Paket Reguler</option>
+                                <option value="semi-private">Paket Semi Private</option>
+                                <option value="private">Paket Private</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Jumlah Pertemuan Total</label>
+                            <input type="number" class="form-control" id="totalMeetings" min="1" max="100" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Level</label>
+                            <select class="form-control" id="studentLevel" required>
+                                <option value="">Pilih Level</option>
+                                <option value="beginner">Beginner</option>
+                                <option value="intermediate">Intermediate</option>
+                                <option value="advanced">Advanced</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary" onclick="addStudent()">Tambah Murid</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Schedule Modal -->
+    <div class="modal fade" id="addScheduleModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-calendar-plus me-2"></i>Tambah Jadwal Pertemuan
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addScheduleForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Laoshi</label>
+                                    <select class="form-control" id="scheduleTeacher" required>
+                                        <option value="">Pilih Laoshi</option>
+                                        <option value="Li Wei">Li Wei</option>
+                                        <option value="Zhang San">Zhang San</option>
+                                        <option value="Wang Lei">Wang Lei</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Tanggal</label>
+                                    <input type="date" class="form-control" id="scheduleDate" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Waktu Mulai</label>
+                                    <input type="time" class="form-control" id="scheduleStartTime" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Waktu Selesai</label>
+                                    <input type="time" class="form-control" id="scheduleEndTime" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Murid</label>
+                            <div id="studentSelection">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="Wang Ming" id="student1">
+                                    <label class="form-check-label" for="student1">Wang Ming (Private)</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="Chen Li" id="student2">
+                                    <label class="form-check-label" for="student2">Chen Li (Semi Private)</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="Zhang Wei" id="student3">
+                                    <label class="form-check-label" for="student3">Zhang Wei (Reguler)</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Topik Pembelajaran</label>
+                            <input type="text" class="form-control" id="scheduleTopic" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary" onclick="addSchedule()">Tambah Jadwal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Video Modal -->
+    <div class="modal fade" id="uploadVideoModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-video me-2"></i>Upload Video Kelas
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="uploadVideoForm">
+                        <div class="mb-3">
+                            <label class="form-label">Jenis Upload</label>
+                            <div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="uploadType" id="uploadFile" value="file" checked>
+                                    <label class="form-check-label" for="uploadFile">Upload File (.mp4)</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="uploadType" id="uploadYoutube" value="youtube">
+                                    <label class="form-check-label" for="uploadYoutube">Link YouTube</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="fileUploadSection">
+                            <div class="mb-3">
+                                <label class="form-label">Upload Video (.mp4)</label>
+                                <div class="upload-area" onclick="document.getElementById('videoFile').click()">
+                                    <i class="fas fa-cloud-upload-alt fa-3x text-primary mb-3"></i>
+                                    <p>Klik untuk memilih file atau drag & drop</p>
+                                    <small class="text-muted">Format: .mp4, Maksimal 500MB</small>
+                                </div>
+                                <input type="file" id="videoFile" accept=".mp4" style="display: none;">
+                            </div>
+                        </div>
+
+                        <div id="youtubeUploadSection" class="hidden">
+                            <div class="mb-3">
+                                <label class="form-label">Link YouTube (Private/Unlisted)</label>
+                                <input type="url" class="form-control" id="youtubeLink" placeholder="https://youtube.com/watch?v=...">
+                                <small class="text-muted">Pastikan video berstatus Private atau Unlisted</small>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Pilih Murid</label>
+                            <div id="videoStudentSelection">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="Wang Ming" id="videoStudent1">
+                                    <label class="form-check-label" for="videoStudent1">Wang Ming</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="Chen Li" id="videoStudent2">
+                                    <label class="form-check-label" for="videoStudent2">Chen Li</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="Zhang Wei" id="videoStudent3">
+                                    <label class="form-check-label" for="videoStudent3">Zhang Wei</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Judul Video</label>
+                            <input type="text" class="form-control" id="videoTitle" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Topik Pembelajaran</label>
+                            <input type="text" class="form-control" id="videoTopic" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Deskripsi</label>
+                            <textarea class="form-control" id="videoDescription" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary" onclick="uploadVideo()">Upload Video</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Report Modal -->
+    <div class="modal fade" id="createReportModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-clipboard-list me-2"></i>Buat Report Harian
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Pilih Metode Report</label>
+                        <div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="reportMethod" id="reportForm" value="form" checked>
+                                <label class="form-check-label" for="reportForm">Form Internal</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="reportMethod" id="reportGoogle" value="google">
+                                <label class="form-check-label" for="reportGoogle">Google Form</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="internalFormSection">
+                        <form id="createReportForm">
+                            <div class="mb-3">
+                                <label class="form-label">Pilih Murid</label>
+                                <select class="form-control" id="reportStudent" required>
+                                    <option value="">Pilih Murid</option>
+                                    <option value="Wang Ming">Wang Ming</option>
+                                    <option value="Chen Li">Chen Li</option>
+                                    <option value="Zhang Wei">Zhang Wei</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Tanggal Pertemuan</label>
+                                <input type="date" class="form-control" id="reportDate" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Topik Pembelajaran</label>
+                                <input type="text" class="form-control" id="reportTopic" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Progress Murid</label>
+                                <select class="form-control" id="reportProgress" required>
+                                    <option value="">Pilih Progress</option>
+                                    <option value="Sangat Baik">Sangat Baik</option>
+                                    <option value="Baik">Baik</option>
+                                    <option value="Cukup">Cukup</option>
+                                    <option value="Perlu Perbaikan">Perlu Perbaikan</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Catatan Pembelajaran</label>
+                                <textarea class="form-control" id="reportNotes" rows="4" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Materi yang Dipelajari</label>
+                                <textarea class="form-control" id="reportMaterials" rows="3"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">PR/Tugas untuk Pertemuan Selanjutnya</label>
+                                <textarea class="form-control" id="reportHomework" rows="3"></textarea>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div id="googleFormSection" class="hidden">
+                        <div class="text-center">
+                            <i class="fab fa-google fa-3x text-primary mb-3"></i>
+                            <h5>Google Form Integration</h5>
+                            <p class="text-muted mb-4">Klik tombol di bawah untuk membuka Google Form report harian</p>
+                            <button class="btn btn-primary" onclick="window.open('https://forms.google.com/sample-form', '_blank')">
+                                <i class="fab fa-google me-2"></i>Buka Google Form
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary" id="submitReportBtn" onclick="createReport()">Simpan Report</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Material Modal (Admin) -->
+    <div class="modal fade" id="addMaterialModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-book me-2"></i>Tambah Materi Pembelajaran
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addMaterialForm">
+                        <div class="mb-3">
+                            <label class="form-label">Jenis Materi</label>
+                            <div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="materialType" id="materialPDF" value="pdf" checked>
+                                    <label class="form-check-label" for="materialPDF">PDF</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="materialType" id="materialVideo" value="video">
+                                    <label class="form-check-label" for="materialVideo">Video</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="materialType" id="materialLink" value="link">
+                                    <label class="form-check-label" for="materialLink">Link</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="materialFileSection">
+                            <div class="mb-3">
+                                <label class="form-label">Upload File</label>
+                                <div class="upload-area" onclick="document.getElementById('materialFile').click()">
+                                    <i class="fas fa-cloud-upload-alt fa-3x text-primary mb-3"></i>
+                                    <p>Klik untuk memilih file atau drag & drop</p>
+                                    <small class="text-muted">Format: PDF, MP4, atau file lainnya</small>
+                                </div>
+                                <input type="file" id="materialFile" style="display: none;">
+                            </div>
+                        </div>
+
+                        <div id="materialLinkSection" class="hidden">
+                            <div class="mb-3">
+                                <label class="form-label">Link Materi</label>
+                                <input type="url" class="form-control" id="materialUrl" placeholder="https://...">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Judul Materi</label>
+                            <input type="text" class="form-control" id="materialTitle" required>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Level</label>
+                                    <select class="form-control" id="materialLevel" required>
+                                        <option value="">Pilih Level</option>
+                                        <option value="Beginner">Beginner</option>
+                                        <option value="Intermediate">Intermediate</option>
+                                        <option value="Advanced">Advanced</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Status/Paket Murid</label>
+                                    <select class="form-control" id="materialPackage" required>
+                                        <option value="">Pilih Paket</option>
+                                        <option value="Reguler">Paket Reguler</option>
+                                        <option value="Semi Private">Paket Semi Private</option>
+                                        <option value="Private">Paket Private</option>
+                                        <option value="Semua">Semua Paket</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Deskripsi</label>
+                            <textarea class="form-control" id="materialDescription" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary" onclick="addMaterial()">Simpan Materi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add User Modal (Admin) -->
+    <div class="modal fade" id="addUserModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-user-plus me-2"></i>Tambah Pengguna Baru
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addUserForm">
+                        <div class="mb-3">
+                            <label class="form-label">Nama Lengkap</label>
+                            <input type="text" class="form-control" id="newUserName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" id="newUserEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Nomor Telepon</label>
+                            <input type="tel" class="form-control" id="newUserPhone" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Role</label>
+                            <select class="form-control" id="newUserRole" required>
+                                <option value="">Pilih Role</option>
+                                <option value="Laoshi">Laoshi</option>
+                                <option value="Murid">Murid</option>
+                                <option value="Admin">Admin</option>
+                            </select>
+                        </div>
+                        <div class="mb-3" id="studentPackageSection" style="display: none;">
+                            <label class="form-label">Status/Paket (untuk Murid)</label>
+                            <select class="form-control" id="newUserPackage">
+                                <option value="">Pilih Paket</option>
+                                <option value="Paket Reguler">Paket Reguler</option>
+                                <option value="Paket Semi Private">Paket Semi Private</option>
+                                <option value="Paket Private">Paket Private</option>
+                                <option value="Non-Aktif">Non-Aktif</option>
+                            </select>
+                        </div>
+                        
+                        <hr>
+                        <div class="text-center mb-3">
+                            <button type="button" class="btn btn-outline-primary" onclick="generateCredentials()">
+                                <i class="fas fa-magic me-2"></i>Generate ID & Password
+                            </button>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">ID Pengguna</label>
+                                    <input type="text" class="form-control" id="newUserId" readonly required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Password</label>
+                                    <div class="input-group">
+                                        <input type="password" class="form-control" id="newUserPassword" readonly required>
+                                        <button class="btn btn-outline-secondary" type="button" onclick="togglePasswordVisibility()">
+                                            <i class="fas fa-eye" id="passwordToggleIcon"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary" onclick="addUser()">Tambah Pengguna</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+      <!-- Schedule Detail Modal -->
+    <div class="modal fade" id="scheduleDetailModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-calendar-check me-2"></i>Detail Pertemuan
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="scheduleDetailContent">
+                    <!-- Schedule detail content will be populated by JavaScript -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-primary" onclick="editCurrentSchedule()">Edit Jadwal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Report Detail Modal -->
+    <div class="modal fade" id="reportDetailModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-clipboard-check me-2"></i>Detail Report Harian
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="reportDetailContent">
+                    <!-- Report detail content will be populated by JavaScript -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-primary" id="editReportBtn" onclick="editCurrentReport()">Edit Report</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Detail Modal -->
+    <div class="modal fade" id="userDetailModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-user-circle me-2"></i>Detail Pengguna
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="userDetailContent">
+                    <!-- User detail content will be populated by JavaScript -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-primary" onclick="editCurrentUser()">Edit Pengguna</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Detail Modal -->
+    <div class="modal fade" id="videoDetailModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-video me-2"></i>Detail Video
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="videoDetailContent">
+                    <!-- Video detail content will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- View Detail Modals -->
+    
+    <!-- Student Detail Modal -->
+    <div class="modal fade" id="studentDetailModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-user me-2"></i>Detail Murid
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="studentDetailContent">
+                    <!-- Student detail content will be populated by JavaScript -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-primary" onclick="editStudent()">Edit Data</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Static Data
+        const staticData = {
+            laoshi: {
+                name: 'Li Wei',
+                stats: [
+                    { number: '12', label: 'Murid Aktif', color: 'primary' },
+                    { number: '48', label: 'Video Upload', color: 'success' },
+                    { number: '156', label: 'Jam Mengajar', color: 'warning' },
+                    { number: '24', label: 'Report Bulan Ini', color: 'secondary' }
+                ],
+                students: [
+                    { 
+                        id: 'M001', 
+                        name: 'Wang Ming', 
+                        package: 'Private', 
+                        level: 'Beginner', 
+                        completedMeetings: 15, 
+                        totalMeetings: 30,
+                        lastMeeting: '2025-08-15',
+                        progress: 'Baik'
+                    },
+                    { 
+                        id: 'M002', 
+                        name: 'Chen Li', 
+                        package: 'Semi Private', 
+                        level: 'Intermediate', 
+                        completedMeetings: 22, 
+                        totalMeetings: 40,
+                        lastMeeting: '2025-08-14',
+                        progress: 'Sangat Baik'
+                    },
+                    { 
+                        id: 'M003', 
+                        name: 'Zhang Wei', 
+                        package: 'Reguler', 
+                        level: 'Beginner', 
+                        completedMeetings: 8, 
+                        totalMeetings: 20,
+                        lastMeeting: '2025-08-13',
+                        progress: 'Cukup'
+                    }
+                ],
+                schedule: [
+                    { student: 'Wang Ming', time: '09:00 - 10:00', date: '2025-08-18', topic: 'HSK Level 1', students: ['Wang Ming'] },
+                    { student: 'Chen Li', time: '10:30 - 11:30', date: '2025-08-18', topic: 'Conversation Practice', students: ['Chen Li'] },
+                    { student: 'Zhang Wei', time: '14:00 - 15:00', date: '2025-08-19', topic: 'Grammar Review', students: ['Zhang Wei'] }
+                ],
+                videos: [
+                    { 
+                        students: ['Wang Ming'], 
+                        date: '2025-08-15', 
+                        topic: 'HSK Level 1 - Lesson 3', 
+                        duration: '45 min',
+                        type: 'upload',
+                        title: 'Pembelajaran Kosakata Dasar'
+                    },
+                    { 
+                        students: ['Chen Li', 'Zhang Wei'], 
+                        date: '2025-08-14', 
+                        topic: 'Conversation Practice', 
+                        duration: '50 min',
+                        type: 'youtube',
+                        title: 'Latihan Percakapan Sehari-hari'
+                    }
+                ],
+                reports: [
+                    { student: 'Wang Ming', date: '2025-08-15', progress: 'Baik', notes: 'Sudah menguasai 20 kosakata baru', topic: 'HSK Level 1' },
+                    { student: 'Chen Li', date: '2025-08-14', progress: 'Sangat Baik', notes: 'Pronunciation sudah membaik', topic: 'Conversation Practice' }
+                ]
+            },
+            murid: {
+                name: 'Wang Ming',
+                stats: [
+                    { number: '24', label: 'Pertemuan Selesai', color: 'primary' },
+                    { number: '18', label: 'Video Tersedia', color: 'success' },
+                    { number: '85%', label: 'Progress Belajar', color: 'warning' },
+                    { number: '22', label: 'Report Diterima', color: 'secondary' }
+                ],
+                schedule: [
+                    { teacher: 'Li Wei', time: '09:00 - 10:00', date: '2025-08-18', topic: 'HSK Level 1' },
+                    { teacher: 'Zhang San', time: '14:00 - 15:00', date: '2025-08-20', topic: 'Speaking Practice' }
+                ],
+                videos: [
+                    { teacher: 'Li Wei', date: '2025-08-15', topic: 'HSK Level 1 - Lesson 3', duration: '45 min', title: 'Pembelajaran Kosakata Dasar' },
+                    { teacher: 'Li Wei', date: '2025-08-12', topic: 'Pronunciation Practice', duration: '40 min', title: 'Latihan Pelafalan' }
+                ],
+                reports: [
+                    { teacher: 'Li Wei', date: '2025-08-15', progress: 'Baik', notes: 'Sudah menguasai 20 kosakata baru', topic: 'HSK Level 1' },
+                    { teacher: 'Li Wei', date: '2025-08-12', progress: 'Sangat Baik', notes: 'Pronunciation sudah membaik', topic: 'Pronunciation Practice' }
+                ],
+                materials: [
+                    { title: 'HSK Level 1 - Buku Teks', type: 'PDF', level: 'Beginner', package: 'Semua' },
+                    { title: 'Audio Pronunciation Guide', type: 'Audio', level: 'Beginner', package: 'Private' },
+                    { title: 'Character Writing Practice', type: 'PDF', level: 'Beginner', package: 'Semua' }
+                ]
+            },
+            admin: {
+                name: 'Admin System',
+                stats: [
+                    { number: '45', label: 'Total Murid', color: 'primary' },
+                    { number: '8', label: 'Total Laoshi', color: 'success' },
+                    { number: '128', label: 'Video Terupload', color: 'warning' },
+                    { number: '92%', label: 'Tingkat Kehadiran', color: 'secondary' }
+                ],
+                users: [
+                    { id: 'L001', name: 'Li Wei', role: 'Laoshi', status: 'Aktif' },
+                    { id: 'L002', name: 'Zhang San', role: 'Laoshi', status: 'Aktif' },
+                    { id: 'M001', name: 'Wang Ming', role: 'Murid', status: 'Paket Private' },
+                    { id: 'M002', name: 'Chen Li', role: 'Murid', status: 'Paket Semi Private' },
+                    { id: 'M003', name: 'Zhang Wei', role: 'Murid', status: 'Paket Reguler' },
+                    { id: 'M004', name: 'Liu Yang', role: 'Murid', status: 'Non-Aktif' }
+                ],
+                materials: [
+                    { title: 'HSK Level 1 - Buku Teks', type: 'PDF', level: 'Beginner', package: 'Semua', uploadDate: '2025-01-15' },
+                    { title: 'Audio Pronunciation Guide', type: 'Audio', level: 'Beginner', package: 'Private', uploadDate: '2025-01-20' },
+                    { title: 'Character Writing Practice', type: 'PDF', level: 'Beginner', package: 'Semua', uploadDate: '2025-02-01' },
+                    { title: 'Advanced Grammar Exercises', type: 'PDF', level: 'Advanced', package: 'Private', uploadDate: '2025-02-10' }
+                ]
+            }
+        };
+
+        const menuItems = {
+            laoshi: [
+                { id: 'dashboard', name: 'Dashboard', icon: 'fas fa-tachometer-alt' },
+                { id: 'datamurid', name: 'Data Murid', icon: 'fas fa-users' },
+                { id: 'jadwal', name: 'Jadwal Pertemuan', icon: 'fas fa-calendar-week' },
+                { id: 'video', name: 'Video Kelas', icon: 'fas fa-video' },
+                { id: 'report', name: 'Report Harian', icon: 'fas fa-clipboard-list' }
+            ],
+            murid: [
+                { id: 'dashboard', name: 'Dashboard', icon: 'fas fa-tachometer-alt' },
+                { id: 'jadwal', name: 'Jadwal Pertemuan', icon: 'fas fa-calendar-week' },
+                { id: 'video', name: 'Video Kelas', icon: 'fas fa-video' },
+                { id: 'report', name: 'Report Harian', icon: 'fas fa-clipboard-list' },
+                { id: 'materi', name: 'Materi Belajar', icon: 'fas fa-book' }
+            ],
+            admin: [
+                { id: 'dashboard', name: 'Dashboard', icon: 'fas fa-tachometer-alt' },
+                { id: 'pengguna', name: 'Pengguna', icon: 'fas fa-users' },
+                { id: 'jadwal', name: 'Jadwal Pertemuan', icon: 'fas fa-calendar-week' },
+                { id: 'video', name: 'Video Kelas', icon: 'fas fa-video' },
+                { id: 'report', name: 'Report Harian', icon: 'fas fa-clipboard-list' },
+                { id: 'materi', name: 'Materi Belajar', icon: 'fas fa-book' }
+            ]
+        };
+
+        let currentRole = 'laoshi';
+        let currentUser = null;
+
+        // Role selection
+        document.querySelectorAll('.role-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.role-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentRole = this.dataset.role;
+            });
+        });
+
+        // Upload type radio button handlers
+        document.addEventListener('DOMContentLoaded', function() {
+            // Video upload type handler
+            document.querySelectorAll('input[name="uploadType"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const fileSection = document.getElementById('fileUploadSection');
+                    const youtubeSection = document.getElementById('youtubeUploadSection');
+                    
+                    if (this.value === 'file') {
+                        fileSection.classList.remove('hidden');
+                        youtubeSection.classList.add('hidden');
+                    } else {
+                        fileSection.classList.add('hidden');
+                        youtubeSection.classList.remove('hidden');
+                    }
+                });
+            });
+
+            // Report method handler
+            document.querySelectorAll('input[name="reportMethod"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const internalSection = document.getElementById('internalFormSection');
+                    const googleSection = document.getElementById('googleFormSection');
+                    const submitBtn = document.getElementById('submitReportBtn');
+                    
+                    if (this.value === 'form') {
+                        internalSection.classList.remove('hidden');
+                        googleSection.classList.add('hidden');
+                        submitBtn.style.display = 'block';
+                    } else {
+                        internalSection.classList.add('hidden');
+                        googleSection.classList.remove('hidden');
+                        submitBtn.style.display = 'none';
+                    }
+                });
+            });
+
+            // Material type handler
+            document.querySelectorAll('input[name="materialType"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const fileSection = document.getElementById('materialFileSection');
+                    const linkSection = document.getElementById('materialLinkSection');
+                    
+                    if (this.value === 'link') {
+                        fileSection.classList.add('hidden');
+                        linkSection.classList.remove('hidden');
+                    } else {
+                        fileSection.classList.remove('hidden');
+                        linkSection.classList.add('hidden');
+                    }
+                });
+            });
+
+            // User role handler
+            document.getElementById('newUserRole').addEventListener('change', function() {
+                const packageSection = document.getElementById('studentPackageSection');
+                if (this.value === 'Murid') {
+                    packageSection.style.display = 'block';
+                } else {
+                    packageSection.style.display = 'none';
+                }
+            });
+        });
+
+        // Login form
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const userId = document.getElementById('userId').value;
+            const password = document.getElementById('password').value;
+            
+            // Simple validation (in real app, this would be server-side)
+            if (userId && password) {
+                currentUser = staticData[currentRole];
+                login();
+            } else {
+                alert('Harap isi semua field!');
+            }
+        });
+
+        function login() {
+            document.getElementById('loginPage').classList.add('hidden');
+            document.getElementById('mainApp').classList.remove('hidden');
+            
+            // Set user display name
+            document.getElementById('userDisplayName').textContent = currentUser.name;
+            document.getElementById('welcomeName').textContent = currentUser.name;
+            
+            // Setup navigation
+            setupNavigation();
+            
+            // Load dashboard by default
+            showContent('dashboard');
+        }
+
+        function logout() {
+            document.getElementById('mainApp').classList.add('hidden');
+            document.getElementById('loginPage').classList.remove('hidden');
+            document.getElementById('loginForm').reset();
+            currentUser = null;
+        }
+
+        function setupNavigation() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.innerHTML = '';
+            
+            menuItems[currentRole].forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'nav-item';
+                li.innerHTML = `
+                    <a class="nav-link ${item.id === 'dashboard' ? 'active' : ''}" 
+                       href="#" onclick="showContent('${item.id}')">
+                        <i class="${item.icon} me-1"></i>${item.name}
+                    </a>
+                `;
+                navMenu.appendChild(li);
+            });
+        }
+
+          // Filter functions
+        let originalScheduleData = [];
+        let originalReportData = [];
+        let originalMaterialData = [];
+
+        function filterSchedule() {
+            const monthFilter = document.getElementById('scheduleMonthFilter').value;
+            const dateFilter = document.getElementById('scheduleDateFilter').value;
+            
+            let filteredData = originalScheduleData;
+            
+            if (monthFilter) {
+                filteredData = filteredData.filter(schedule => {
+                    const scheduleMonth = schedule.date.split('-')[1];
+                    return scheduleMonth === monthFilter;
+                });
+            }
+            
+            if (dateFilter) {
+                filteredData = filteredData.filter(schedule => {
+                    return schedule.date === dateFilter;
+                });
+            }
+            
+            displayFilteredSchedule(filteredData);
+        }
+
+         function showContent(contentId) {
+            // Hide all sections
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            // Update active nav
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Find and activate the clicked nav link
+            const clickedLink = Array.from(document.querySelectorAll('.nav-link')).find(link => 
+                link.getAttribute('onclick') && link.getAttribute('onclick').includes(contentId)
+            );
+            if (clickedLink) {
+                clickedLink.classList.add('active');
+            }
+            
+            // Show selected section
+            const targetSection = document.getElementById(contentId + 'Content');
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+            }
+            
+            // Load content based on section
+            switch(contentId) {
+                case 'dashboard':
+                    loadDashboard();
+                    break;
+                case 'datamurid':
+                    loadDataMurid();
+                    break;
+                case 'jadwal':
+                    loadJadwal();
+                    break;
+                case 'video':
+                    loadVideo();
+                    break;
+                case 'report':
+                    loadReport();
+                    break;
+                case 'materi':
+                    loadMateri();
+                    break;
+                case 'pengguna':
+                    loadPengguna();
+                    break;
+            }
+        }
+
+        function loadDashboard() {
+            // Load stats cards
+            const statsContainer = document.getElementById('statsCards');
+            statsContainer.innerHTML = '';
+            
+            currentUser.stats.forEach(stat => {
+                const col = document.createElement('div');
+                col.className = 'col-md-3 col-sm-6';
+                col.innerHTML = `
+                    <div class="stats-card card-${stat.color}">
+                        <div class="stats-number">${stat.number}</div>
+                        <div class="stats-label">${stat.label}</div>
+                    </div>
+                `;
+                statsContainer.appendChild(col);
+            });
+            
+            // Load quick actions
+            loadQuickActions();
+            loadRecentActivity();
+        }
+
+        function loadDataMurid() {
+            const studentList = document.getElementById('studentList');
+            studentList.innerHTML = '';
+            
+            currentUser.students.forEach(student => {
+                const progressPercentage = (student.completedMeetings / student.totalMeetings * 100).toFixed(1);
+                const progressColor = progressPercentage >= 75 ? 'success' : progressPercentage >= 50 ? 'warning' : 'danger';
+                
+                const studentCard = document.createElement('div');
+                studentCard.className = 'student-card';
+                studentCard.innerHTML = `
+                    <div class="row align-items-center">
+                        <div class="col-md-3">
+                            <h6 class="fw-bold mb-1">${student.name}</h6>
+                            <small class="text-muted">${student.id}</small>
+                        </div>
+                        <div class="col-md-2">
+                            <span class="badge bg-primary">${student.package}</span>
+                            <br><small class="text-muted">${student.level}</small>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <small>Progress Pertemuan</small>
+                                <small>${student.completedMeetings}/${student.totalMeetings}</small>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar-fill" style="width: ${progressPercentage}%"></div>
+                            </div>
+                            <small class="text-muted">${progressPercentage}% selesai</small>
+                        </div>
+                        <div class="col-md-2">
+                            <small class="text-muted">Terakhir:</small>
+                            <br><small>${student.lastMeeting}</small>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="btn-group">
+                                <button class="btn btn-sm btn-outline-primary" onclick="viewStudentDetail('${student.id}')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn btn-sm btn-outline-warning" onclick="editStudent('${student.id}')">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                studentList.appendChild(studentCard);
+            });
+        }
+
+        function loadQuickActions() {
+            const quickActions = document.getElementById('quickActions');
+            let actions = '';
+            
+            if (currentRole === 'laoshi') {
+                actions = `
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-primary" onclick="showUploadVideoModal()">
+                            <i class="fas fa-upload me-2"></i>Upload Video Baru
+                        </button>
+                        <button class="btn btn-outline-primary" onclick="showCreateReportModal()">
+                            <i class="fas fa-edit me-2"></i>Buat Report Harian
+                        </button>
+                    </div>
+                `;
+            } else if (currentRole === 'murid') {
+                actions = `
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-primary" onclick="requestReschedule()">
+                            <i class="fas fa-calendar-plus me-2"></i>Ajukan Reschedule
+                        </button>
+                        <button class="btn btn-outline-primary" onclick="downloadMaterials()">
+                            <i class="fas fa-download me-2"></i>Download Materi
+                        </button>
+                    </div>
+                `;
+            } else {
+                actions = `
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-primary" onclick="showAddUserModal()">
+                            <i class="fas fa-user-plus me-2"></i>Tambah Pengguna
+                        </button>
+                        <button class="btn btn-outline-primary" onclick="viewStatistics()">
+                            <i class="fas fa-chart-bar me-2"></i>Lihat Statistik
+                        </button>
+                    </div>
+                `;
+            }
+            
+            quickActions.innerHTML = actions;
+        }
+
+        function loadRecentActivity() {
+            const recentActivity = document.getElementById('recentActivity');
+            let activities = '';
+            
+            if (currentRole === 'laoshi') {
+                activities = `
+                    <div class="activity-item mb-3">
+                        <div class="d-flex align-items-center">
+                            <div class="badge bg-success me-3">
+                                <i class="fas fa-video"></i>
+                            </div>
+                            <div>
+                                <div class="fw-bold">Video uploaded</div>
+                                <small class="text-muted">HSK Level 1 - Wang Ming</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="activity-item mb-3">
+                        <div class="d-flex align-items-center">
+                            <div class="badge bg-primary me-3">
+                                <i class="fas fa-clipboard"></i>
+                            </div>
+                            <div>
+                                <div class="fw-bold">Report submitted</div>
+                                <small class="text-muted">Chen Li - Progress baik</small>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (currentRole === 'murid') {
+                activities = `
+                    <div class="activity-item mb-3">
+                        <div class="d-flex align-items-center">
+                            <div class="badge bg-info me-3">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div>
+                                <div class="fw-bold">Materi baru tersedia</div>
+                                <small class="text-muted">HSK Level 1 - Character Practice</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="activity-item mb-3">
+                        <div class="d-flex align-items-center">
+                            <div class="badge bg-success me-3">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div>
+                                <div class="fw-bold">Report diterima</div>
+                                <small class="text-muted">Li Wei - Progress sangat baik</small>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                activities = `
+                    <div class="activity-item mb-3">
+                        <div class="d-flex align-items-center">
+                            <div class="badge bg-warning me-3">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <div>
+                                <div class="fw-bold">Pengguna baru ditambahkan</div>
+                                <small class="text-muted">Liu Yang - Murid Baru</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="activity-item mb-3">
+                        <div class="d-flex align-items-center">
+                            <div class="badge bg-info me-3">
+                                <i class="fas fa-calendar"></i>
+                            </div>
+                            <div>
+                                <div class="fw-bold">Jadwal diperbarui</div>
+                                <small class="text-muted">3 perubahan jadwal hari ini</small>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            recentActivity.innerHTML = activities;
+        }
+
+        function loadJadwal() {
+            const scheduleList = document.getElementById('scheduleList');
+            let content = '';
+            
+            if (currentRole === 'laoshi' || currentRole === 'admin') {
+                const schedules = currentRole === 'laoshi' ? currentUser.schedule : staticData.laoshi.schedule;
+                schedules.forEach((schedule, index) => {
+                    const studentsText = schedule.students ? schedule.students.join(', ') : schedule.student;
+                    content += `
+                        <div class="schedule-item">
+                            <div class="row align-items-center">
+                                <div class="col-md-3">
+                                    <div class="fw-bold">${studentsText}</div>
+                                    <small class="text-muted">${schedule.date}</small>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="fw-bold">${schedule.time}</div>
+                                    <small class="text-muted">1 jam</small>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="fw-bold">${schedule.topic}</div>
+                                    <small class="text-muted">${schedule.students ? 'Group Class' : 'Private Class'}</small>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="btn-group">
+                                        <button class="btn btn-sm btn-outline-primary" onclick="viewScheduleDetail(${index})">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-warning" onclick="editSchedule(${index})">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-danger" onclick="deleteSchedule(${index})">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+            } else {
+                currentUser.schedule.forEach((schedule, index) => {
+                    content += `
+                        <div class="schedule-item">
+                            <div class="row align-items-center">
+                                <div class="col-md-3">
+                                    <div class="fw-bold">${schedule.teacher}</div>
+                                    <small class="text-muted">${schedule.date}</small>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="fw-bold">${schedule.time}</div>
+                                    <small class="text-muted">1 jam</small>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="fw-bold">${schedule.topic}</div>
+                                    <small class="text-muted">Kelas Regular</small>
+                                </div>
+                                <div class="col-md-2">
+                                    <button class="btn btn-sm btn-primary" onclick="requestReschedule(${index})">
+                                        <i class="fas fa-calendar-plus me-1"></i>Reschedule
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+            
+            scheduleList.innerHTML = content;
+        }
+
+        function loadVideo() {
+            const videoList = document.getElementById('videoList');
+            let content = '';
+            
+            const videos = currentRole === 'murid' ? currentUser.videos : staticData.laoshi.videos;
+            
+            videos.forEach((video, index) => {
+                const studentsText = video.students ? video.students.join(', ') : (video.teacher || 'Unknown');
+                const typeIcon = video.type === 'youtube' ? 'fab fa-youtube text-danger' : 'fas fa-file-video text-primary';
+                
+                content += `
+                    <div class="col-md-6 col-lg-4">
+                        <div class="video-card">
+                            <div class="video-thumbnail mb-3" style="height: 180px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 10px; position: relative;">
+                                <div class="position-absolute top-50 start-50 translate-middle text-white">
+                                    <i class="fas fa-play-circle" style="font-size: 3rem;"></i>
+                                </div>
+                                <div class="position-absolute top-0 end-0 p-2">
+                                    <i class="${typeIcon}"></i>
+                                </div>
+                            </div>
+                            <h6 class="fw-bold">${video.title || video.topic}</h6>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <small class="text-muted">
+                                    <i class="fas fa-user me-1"></i>
+                                    ${currentRole === 'murid' ? video.teacher : studentsText}
+                                </small>
+                                <small class="text-muted">
+                                    <i class="fas fa-clock me-1"></i>
+                                    ${video.duration}
+                                </small>
+                            </div>
+                            <small class="text-muted d-block mb-3">
+                                <i class="fas fa-calendar me-1"></i>
+                                ${video.date}
+                            </small>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-primary btn-sm" onclick="playVideo(${index})">
+                                    <i class="fas fa-play me-2"></i>Tonton Video
+                                </button>
+                                ${currentRole === 'admin' ? `<button class="btn btn-outline-danger btn-sm" onclick="deleteVideo(${index})"><i class="fas fa-trash me-2"></i>Hapus</button>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            videoList.innerHTML = content;
+        }
+
+
+  function loadReport() {
+            const reportList = document.getElementById('reportList');
+            let content = '';
+            
+            const reports = currentRole === 'murid' ? currentUser.reports : staticData.laoshi.reports;
+            
+            content += `
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>${currentRole === 'murid' ? 'Pengajar' : 'Murid'}</th>
+                                <th>Tanggal</th>
+                                <th>Topik</th>
+                                <th>Progress</th>
+                                <th>Catatan</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+            `;
+            
+            reports.forEach((report, index) => {
+                const progressBadge = report.progress === 'Sangat Baik' ? 'success' : 
+                                    report.progress === 'Baik' ? 'primary' : 'warning';
+                
+                content += `
+                    <tr>
+                        <td class="fw-bold">${currentRole === 'murid' ? report.teacher : report.student}</td>
+                        <td>${report.date}</td>
+                        <td>${report.topic || '-'}</td>
+                        <td><span class="badge bg-${progressBadge}">${report.progress}</span></td>
+                        <td>${report.notes.length > 50 ? report.notes.substring(0, 50) + '...' : report.notes}</td>
+                        <td>
+                            <div class="btn-group">
+                                <button class="btn btn-sm btn-outline-primary" onclick="viewReportDetail(${index})">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                ${currentRole !== 'murid' ? `<button class="btn btn-sm btn-outline-warning" onclick="editReport(${index})"><i class="fas fa-edit"></i></button>` : ''}
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            });
+            
+            content += `
+                        </tbody>
+                    </table>
+                </div>
+            `;
+            
+            reportList.innerHTML = content;
+        }
+
+        function loadMateri() {
+            const materiList = document.getElementById('materiList');
+            const materiActions = document.getElementById('materiActions');
+            let content = '';
+            let actions = '';
+            
+            if (currentRole === 'admin') {
+                actions = `
+                    <button class="btn btn-primary" onclick="showAddMaterialModal()">
+                        <i class="fas fa-plus me-2"></i>Tambah Materi
+                    </button>
+                `;
+                
+                staticData.admin.materials.forEach((material, index) => {
+                    const iconClass = material.type === 'PDF' ? 'fa-file-pdf text-danger' : 
+                                    material.type === 'Audio' ? 'fa-file-audio text-success' : 
+                                    material.type === 'Video' ? 'fa-file-video text-primary' :
+                                    'fa-link text-info';
+                    
+                    content += `
+                        <div class="col-md-6 col-lg-4">
+                            <div class="material-item">
+                                <div class="text-center mb-3">
+                                    <i class="fas ${iconClass}" style="font-size: 3rem;"></i>
+                                </div>
+                                <h6 class="fw-bold">${material.title}</h6>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <small class="text-muted">
+                                        <i class="fas fa-tag me-1"></i>
+                                        ${material.type}
+                                    </small>
+                                    <span class="badge bg-primary">${material.level}</span>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <small class="text-muted">
+                                        <i class="fas fa-users me-1"></i>
+                                        ${material.package}
+                                    </small>
+                                    <small class="text-muted">${material.uploadDate}</small>
+                                </div>
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-outline-primary btn-sm" onclick="editMaterial(${index})">
+                                        <i class="fas fa-edit me-2"></i>Edit
+                                    </button>
+                                    <button class="btn btn-outline-danger btn-sm" onclick="deleteMaterial(${index})">
+                                        <i class="fas fa-trash me-2"></i>Hapus
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+            } else {
+                // Murid view
+                currentUser.materials.forEach((material, index) => {
+                    const iconClass = material.type === 'PDF' ? 'fa-file-pdf text-danger' : 
+                                    material.type === 'Audio' ? 'fa-file-audio text-success' : 
+                                    'fa-file-alt text-primary';
+                    
+                    content += `
+                        <div class="col-md-6 col-lg-4">
+                            <div class="video-card">
+                                <div class="text-center mb-3">
+                                    <i class="fas ${iconClass}" style="font-size: 3rem;"></i>
+                                </div>
+                                <h6 class="fw-bold">${material.title}</h6>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <small class="text-muted">
+                                        <i class="fas fa-tag me-1"></i>
+                                        ${material.type}
+                                    </small>
+                                    <span class="badge bg-primary">${material.level}</span>
+                                </div>
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-primary btn-sm" onclick="downloadMaterial(${index})">
+                                        <i class="fas fa-download me-2"></i>Download
+                                    </button>
+                                    <button class="btn btn-outline-primary btn-sm" onclick="previewMaterial(${index})">
+                                        <i class="fas fa-eye me-2"></i>Preview
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+            
+            materiActions.innerHTML = actions;
+            materiList.innerHTML = content;
+        }
+
+        function loadPengguna() {
+            const usersTable = document.getElementById('usersTable').getElementsByTagName('tbody')[0];
+            usersTable.innerHTML = '';
+            
+            staticData.admin.users.forEach((user, index) => {
+                let statusBadge, statusClass;
+                
+                if (user.role === 'Murid') {
+                    statusClass = user.status === 'Non-Aktif' ? 'secondary' : 'info';
+                    statusBadge = user.status;
+                } else {
+                    statusClass = user.status === 'Aktif' ? 'success' : 'secondary';
+                    statusBadge = user.status;
+                }
+                
+                const row = usersTable.insertRow();
+                row.innerHTML = `
+                    <td class="fw-bold">${user.id}</td>
+                    <td>${user.name}</td>
+                    <td>
+                        <span class="badge bg-${user.role === 'Laoshi' ? 'primary' : user.role === 'Murid' ? 'info' : 'warning'}">
+                            ${user.role}
+                        </span>
+                    </td>
+                    <td><span class="badge bg-${statusClass}">${statusBadge}</span></td>
+                    <td>
+                        <div class="btn-group">
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewUserDetail(${index})">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="btn btn-sm btn-outline-warning" onclick="editUser(${index})">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn btn-sm btn-outline-danger" onclick="deleteUser(${index})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                `;
+            });
+        }
+
+        // Modal functions
+        function showAddStudentModal() {
+            const modal = new bootstrap.Modal(document.getElementById('addStudentModal'));
+            modal.show();
+        }
+
+        function showAddScheduleModal() {
+            const modal = new bootstrap.Modal(document.getElementById('addScheduleModal'));
+            modal.show();
+        }
+
+        function showUploadVideoModal() {
+            const modal = new bootstrap.Modal(document.getElementById('uploadVideoModal'));
+            modal.show();
+        }
+
+        function showCreateReportModal() {
+            const modal = new bootstrap.Modal(document.getElementById('createReportModal'));
+            modal.show();
+        }
+
+        function showAddMaterialModal() {
+            const modal = new bootstrap.Modal(document.getElementById('addMaterialModal'));
+            modal.show();
+        }
+
+        function showAddUserModal() {
+            const modal = new bootstrap.Modal(document.getElementById('addUserModal'));
+            modal.show();
+        }
+
+        // Action functions
+        function addStudent() {
+            const form = document.getElementById('addStudentForm');
+            const formData = new FormData(form);
+            
+            // Here you would normally send data to server
+            alert('Murid berhasil ditambahkan!');
+            bootstrap.Modal.getInstance(document.getElementById('addStudentModal')).hide();
+            form.reset();
+            loadDataMurid(); // Refresh the student list
+        }
+
+        function addSchedule() {
+            const selectedStudents = Array.from(document.querySelectorAll('#studentSelection input[type="checkbox"]:checked')).map(cb => cb.value);
+            
+            if (selectedStudents.length === 0) {
+                alert('Pilih minimal satu murid!');
+                return;
+            }
+            
+            alert(`Jadwal berhasil ditambahkan untuk: ${selectedStudents.join(', ')}`);
+            bootstrap.Modal.getInstance(document.getElementById('addScheduleModal')).hide();
+            document.getElementById('addScheduleForm').reset();
+            loadJadwal(); // Refresh the schedule list
+        }
+
+        function uploadVideo() {
+            const selectedStudents = Array.from(document.querySelectorAll('#videoStudentSelection input[type="checkbox"]:checked')).map(cb => cb.value);
+            const uploadType = document.querySelector('input[name="uploadType"]:checked').value;
+            
+            if (selectedStudents.length === 0) {
+                alert('Pilih minimal satu murid!');
+                return;
+            }
+            
+            if (uploadType === 'file') {
+                const fileInput = document.getElementById('videoFile');
+                if (!fileInput.files[0]) {
+                    alert('Pilih file video untuk diupload!');
+                    return;
+                }
+            } else {
+                const youtubeLink = document.getElementById('youtubeLink').value;
+                if (!youtubeLink) {
+                    alert('Masukkan link YouTube!');
+                    return;
+                }
+            }
+            
+            alert(`Video berhasil diupload untuk: ${selectedStudents.join(', ')}`);
+            bootstrap.Modal.getInstance(document.getElementById('uploadVideoModal')).hide();
+            document.getElementById('uploadVideoForm').reset();
+            loadVideo(); // Refresh the video list
+        }
+
+        function createReport() {
+            const form = document.getElementById('createReportForm');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+            
+            alert('Report berhasil dibuat!');
+            bootstrap.Modal.getInstance(document.getElementById('createReportModal')).hide();
+            form.reset();
+            loadReport(); // Refresh the report list
+        }
+
+        function addMaterial() {
+            const materialType = document.querySelector('input[name="materialType"]:checked').value;
+            
+            if (materialType !== 'link') {
+                const fileInput = document.getElementById('materialFile');
+                if (!fileInput.files[0]) {
+                    alert('Pilih file untuk diupload!');
+                    return;
+                }
+            } else {
+                const urlInput = document.getElementById('materialUrl');
+                if (!urlInput.value) {
+                    alert('Masukkan link materi!');
+                    return;
+                }
+            }
+            
+            alert('Materi berhasil ditambahkan!');
+            bootstrap.Modal.getInstance(document.getElementById('addMaterialModal')).hide();
+            document.getElementById('addMaterialForm').reset();
+            loadMateri(); // Refresh the material list
+        }
+
+        function addUser() {
+            const form = document.getElementById('addUserForm');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+            
+            alert('Pengguna berhasil ditambahkan!');
+            bootstrap.Modal.getInstance(document.getElementById('addUserModal')).hide();
+            form.reset();
+            loadPengguna(); // Refresh the user list
+        }
+
+        // Detail view functions
+        function viewStudentDetail(studentId) {
+            const student = currentUser.students.find(s => s.id === studentId);
+            if (!student) return;
+            
+            const modal = new bootstrap.Modal(document.getElementById('studentDetailModal'));
+            const content = document.getElementById('studentDetailContent');
+            
+            const progressPercentage = (student.completedMeetings / student.totalMeetings * 100).toFixed(1);
+            
+            content.innerHTML = `
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Informasi Murid</h5>
+                        <table class="table table-borderless">
+                            <tr><td><strong>ID:</strong></td><td>${student.id}</td></tr>
+                            <tr><td><strong>Nama:</strong></td><td>${student.name}</td></tr>
+                            <tr><td><strong>Paket:</strong></td><td><span class="badge bg-primary">${student.package}</span></td></tr>
+                            <tr><td><strong>Level:</strong></td><td>${student.level}</td></tr>
+                            <tr><td><strong>Progress:</strong></td><td><span class="badge bg-success">${student.progress}</span></td></tr>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Progress Pembelajaran</h5>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Pertemuan Selesai</span>
+                                <span>${student.completedMeetings}/${student.totalMeetings}</span>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar-fill" style="width: ${progressPercentage}%"></div>
+                            </div>
+                            <small class="text-muted">${progressPercentage}% selesai</small>
+                        </div>
+                        <p><strong>Pertemuan Terakhir:</strong> ${student.lastMeeting}</p>
+                        <p><strong>Estimasi Selesai:</strong> ${calculateEndDate(student.lastMeeting, student.totalMeetings - student.completedMeetings)}</p>
+                    </div>
+                </div>
+            `;
+            
+            modal.show();
+        }
+
+        function playVideo(index) {
+            const videos = currentRole === 'murid' ? currentUser.videos : staticData.laoshi.videos;
+            const video = videos[index];
+            
+            const modal = new bootstrap.Modal(document.getElementById('videoDetailModal'));
+            const content = document.getElementById('videoDetailContent');
+            
+            const studentsText = video.students ? video.students.join(', ') : (video.teacher || 'Unknown');
+            
+            content.innerHTML = `
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="video-player mb-3" style="height: 400px; background: #000; border-radius: 10px; position: relative;">
+                            <div class="position-absolute top-50 start-50 translate-middle text-white text-center">
+                                <i class="fas fa-play-circle" style="font-size: 4rem;"></i>
+                                <div class="mt-2">Video Player</div>
+                                <small>Klik untuk memutar video</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>${video.title || video.topic}</h5>
+                        <hr>
+                        <p><strong>Durasi:</strong> ${video.duration}</p>
+                        <p><strong>Tanggal:</strong> ${video.date}</p>
+                        <p><strong>${currentRole === 'murid' ? 'Pengajar' : 'Murid'}:</strong> ${studentsText}</p>
+                        <p><strong>Topik:</strong> ${video.topic}</p>
+                        ${video.type ? `<p><strong>Sumber:</strong> <span class="badge bg-${video.type === 'youtube' ? 'danger' : 'primary'}">${video.type === 'youtube' ? 'YouTube' : 'Upload'}</span></p>` : ''}
+                        
+                        <div class="d-grid gap-2 mt-4">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-download me-2"></i>Download Video
+                            </button>
+                            <button class="btn btn-outline-primary">
+                                <i class="fas fa-share me-2"></i>Bagikan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            modal.show();
+        }
+
+    function viewReportDetail(index) {
+            const reports = currentRole === 'murid' ? currentUser.reports : staticData.laoshi.reports;
+            const report = reports[index];
+            
+            const modal = new bootstrap.Modal(document.getElementById('reportDetailModal'));
+            const content = document.getElementById('reportDetailContent');
+            
+            const progressBadge = report.progress === 'Sangat Baik' ? 'success' : 
+                                report.progress === 'Baik' ? 'primary' : 'warning';
+            
+            content.innerHTML = `
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Informasi Report</h5>
+                        <table class="table table-borderless">
+                            <tr><td><strong>${currentRole === 'murid' ? 'Pengajar' : 'Murid'}:</strong></td><td>${currentRole === 'murid' ? report.teacher : report.student}</td></tr>
+                            <tr><td><strong>Tanggal:</strong></td><td>${report.date}</td></tr>
+                            <tr><td><strong>Topik:</strong></td><td>${report.topic || '-'}</td></tr>
+                            <tr><td><strong>Progress:</strong></td><td><span class="badge bg-${progressBadge}">${report.progress}</span></td></tr>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Catatan Pembelajaran</h5>
+                        <div class="border rounded p-3 bg-light">
+                            <p class="mb-0">${report.notes}</p>
+                        </div>
+                        ${report.materials ? `
+                            <h6 class="mt-3">Materi yang Dipelajari</h6>
+                            <div class="border rounded p-3 bg-light">
+                                <p class="mb-0">${report.materials}</p>
+                            </div>
+                        ` : ''}
+                        ${report.homework ? `
+                            <h6 class="mt-3">PR/Tugas</h6>
+                            <div class="border rounded p-3 bg-light">
+                                <p class="mb-0">${report.homework}</p>
+                            </div>
+                        ` : ''}
+                    </div>
+                </div>
+            `;
+            
+            // Hide edit button for murid
+            const editBtn = document.getElementById('editReportBtn');
+            if (currentRole === 'murid') {
+                editBtn.style.display = 'none';
+            } else {
+                editBtn.style.display = 'block';
+            }
+            
+            modal.show();
+        }
+        // Edit functions
+        function editStudent(studentId) {
+            alert(`Edit murid ${studentId} - Fitur akan segera tersedia`);
+        }
+
+        function editSchedule(index) {
+            alert(`Edit jadwal ${index} - Fitur akan segera tersedia`);
+        }
+
+        function editReport(index) {
+            alert(`Edit report ${index} - Fitur akan segera tersedia`);
+        }
+
+        function editMaterial(index) {
+            alert(`Edit materi ${index} - Fitur akan segera tersedia`);
+        }
+
+        function editUser(index) {
+            alert(`Edit pengguna ${index} - Fitur akan segera tersedia`);
+        }
+
+        // Delete functions
+        function deleteSchedule(index) {
+            if (confirm('Yakin ingin menghapus jadwal ini?')) {
+                alert('Jadwal berhasil dihapus');
+                loadJadwal();
+            }
+        }
+
+        function deleteVideo(index) {
+            if (confirm('Yakin ingin menghapus video ini?')) {
+                alert('Video berhasil dihapus');
+                loadVideo();
+            }
+        }
+
+        function deleteMaterial(index) {
+            if (confirm('Yakin ingin menghapus materi ini?')) {
+                alert('Materi berhasil dihapus');
+                loadMateri();
+            }
+        }
+
+        function deleteUser(index) {
+            if (confirm('Yakin ingin menghapus pengguna ini?')) {
+                alert('Pengguna berhasil dihapus');
+                loadPengguna();
+            }
+        }
+
+      function viewScheduleDetail(index) {
+            const schedules = currentRole === 'laoshi' ? currentUser.schedule : staticData.laoshi.schedule;
+            const schedule = schedules[index];
+            
+            const modal = new bootstrap.Modal(document.getElementById('scheduleDetailModal'));
+            const content = document.getElementById('scheduleDetailContent');
+            
+            // Calculate meeting statistics for students
+            let studentsInfo = '';
+            if (schedule.students) {
+                schedule.students.forEach(studentName => {
+                    const student = currentUser.students ? currentUser.students.find(s => s.name === studentName) : null;
+                    if (student) {
+                        const progressPercentage = (student.completedMeetings / student.totalMeetings * 100).toFixed(1);
+                        studentsInfo += `
+                            <div class="col-md-6 mb-3">
+                                <div class="border rounded p-3">
+                                    <h6 class="fw-bold">${student.name}</h6>
+                                    <p class="mb-2"><span class="badge bg-primary">${student.package}</span></p>
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <small>Progress Pertemuan</small>
+                                        <small>${student.completedMeetings}/${student.totalMeetings}</small>
+                                    </div>
+                                    <div class="progress-bar-container">
+                                        <div class="progress-bar-fill" style="width: ${progressPercentage}%"></div>
+                                    </div>
+                                    <small class="text-muted">${progressPercentage}% selesai</small>
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+            } else {
+                // Single student
+                const student = currentUser.students ? currentUser.students.find(s => s.name === schedule.student) : null;
+                if (student) {
+                    const progressPercentage = (student.completedMeetings / student.totalMeetings * 100).toFixed(1);
+                    studentsInfo = `
+                        <div class="col-12 mb-3">
+                            <div class="border rounded p-3">
+                                <h6 class="fw-bold">${student.name}</h6>
+                                <p class="mb-2"><span class="badge bg-primary">${student.package}</span></p>
+                                <div class="d-flex justify-content-between mb-1">
+                                    <small>Progress Pertemuan</small>
+                                    <small>${student.completedMeetings}/${student.totalMeetings}</small>
+                                </div>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar-fill" style="width: ${progressPercentage}%"></div>
+                                </div>
+                                <small class="text-muted">${progressPercentage}% selesai</small>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+            
+            content.innerHTML = `
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Informasi Pertemuan</h5>
+                        <table class="table table-borderless">
+                            <tr><td><strong>Tanggal:</strong></td><td>${schedule.date}</td></tr>
+                            <tr><td><strong>Waktu:</strong></td><td>${schedule.time}</td></tr>
+                            <tr><td><strong>Topik:</strong></td><td>${schedule.topic}</td></tr>
+                            <tr><td><strong>Pengajar:</strong></td><td>${currentRole === 'murid' ? schedule.teacher : 'Li Wei'}</td></tr>
+                            <tr><td><strong>Tipe Kelas:</strong></td><td>${schedule.students && schedule.students.length > 1 ? 'Group Class' : 'Private Class'}</td></tr>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Detail Murid</h5>
+                        <div class="row">
+                            ${studentsInfo || '<p class="text-muted">Data murid tidak tersedia</p>'}
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            modal.show();
+        }
+
+
+          function viewUserDetail(index) {
+            const user = staticData.admin.users[index];
+            
+            const modal = new bootstrap.Modal(document.getElementById('userDetailModal'));
+            const content = document.getElementById('userDetailContent');
+            
+            let statusBadge, statusClass;
+            if (user.role === 'Murid') {
+                statusClass = user.status === 'Non-Aktif' ? 'secondary' : 'info';
+                statusBadge = user.status;
+            } else {
+                statusClass = user.status === 'Aktif' ? 'success' : 'secondary';
+                statusBadge = user.status;
+            }
+            
+            content.innerHTML = `
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Informasi Pengguna</h5>
+                        <table class="table table-borderless">
+                            <tr><td><strong>ID:</strong></td><td>${user.id}</td></tr>
+                            <tr><td><strong>Nama:</strong></td><td>${user.name}</td></tr>
+                            <tr><td><strong>Role:</strong></td><td><span class="badge bg-${user.role === 'Laoshi' ? 'primary' : user.role === 'Murid' ? 'info' : 'warning'}">${user.role}</span></td></tr>
+                            <tr><td><strong>Status:</strong></td><td><span class="badge bg-${statusClass}">${statusBadge}</span></td></tr>
+                            <tr><td><strong>Email:</strong></td><td>${user.email || 'Tidak tersedia'}</td></tr>
+                            <tr><td><strong>Telepon:</strong></td><td>${user.phone || 'Tidak tersedia'}</td></tr>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Statistik Aktivitas</h5>
+                        <div class="border rounded p-3 bg-light">
+                            ${user.role === 'Murid' ? `
+                                <p><strong>Total Pertemuan:</strong> ${Math.floor(Math.random() * 50) + 10}</p>
+                                <p><strong>Video Ditonton:</strong> ${Math.floor(Math.random() * 30) + 5}</p>
+                                <p><strong>Progress:</strong> ${Math.floor(Math.random() * 40) + 60}%</p>
+                            ` : user.role === 'Laoshi' ? `
+                                <p><strong>Murid Diajar:</strong> ${Math.floor(Math.random() * 15) + 5}</p>
+                                <p><strong>Video Upload:</strong> ${Math.floor(Math.random() * 50) + 20}</p>
+                                <p><strong>Report Dibuat:</strong> ${Math.floor(Math.random() * 100) + 50}</p>
+                            ` : `
+                                <p><strong>Total Pengguna:</strong> ${staticData.admin.users.length}</p>
+                                <p><strong>Aktivitas Bulan Ini:</strong> Tinggi</p>
+                                <p><strong>Last Login:</strong> Hari ini</p>
+                            `}
+                        </div>
+                        
+                        <h6 class="mt-3">Aksi Cepat</h6>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-envelope me-2"></i>Kirim Email
+                            </button>
+                            <button class="btn btn-outline-warning btn-sm">
+                                <i class="fas fa-key me-2"></i>Reset Password
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            modal.show();
+        }
+
+
+        function requestReschedule(index) {
+            alert('Permintaan reschedule telah dikirim ke admin');
+        }
+
+        function downloadMaterials() {
+            alert('Download materi dimulai...');
+        }
+
+        function downloadMaterial(index) {
+            alert(`Download materi ${index} dimulai...`);
+        }
+
+        function previewMaterial(index) {
+            alert(`Preview materi ${index} - Fitur akan segera tersedia`);
+        }
+
+        function viewStatistics() {
+            alert('Menampilkan statistik lengkap - Fitur akan segera tersedia');
+        }
+
+        function openGoogleForm() {
+            window.open('https://forms.google.com/sample-form', '_blank');
+        }
+
+        function calculateEndDate(startDate, remainingMeetings) {
+            const date = new Date(startDate);
+            date.setDate(date.getDate() + (remainingMeetings * 7)); // Assuming weekly meetings
+            return date.toISOString().split('T')[0];
+        }
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set default role
+            currentRole = 'laoshi';
+            
+            // Set today's date as default for date inputs
+            const today = new Date().toISOString().split('T')[0];
+            document.querySelectorAll('input[type="date"]').forEach(input => {
+                if (!input.value) {
+                    input.value = today;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
