@@ -1,0 +1,181 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(135deg, #764BA2, #667EEA);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 600;
+}
+
+.auth-card {
+  border-radius: 15px;
+  background-color: rgba(255,255,255,0.95);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  padding: 2rem;
+  max-width: 1000px;
+  width: 100%;
+}
+
+input.form-control {
+  padding: 10px 20px !important;
+}
+
+.btn-primary-custom,
+.reset-btn {
+  background-color: #b40000;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  width: 100%;
+  padding: 0.9rem;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+}
+
+.btn-primary-custom:hover,
+.reset-btn:hover {
+  background-color: #8c0000;
+  color: #fff;
+}
+
+.btn-outline-danger,
+.back-btn {
+  border: 2px solid #b40000;
+  font-weight: bold;
+  background: #fff;
+  color: #b40000;
+  width: 100%;
+  padding: 0.9rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-outline-danger:hover,
+.back-btn:hover {
+  background: #f7f7f7;
+  color: #b40000;
+}
+
+.forgot-link {
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.forgot-link:hover {
+  color: #000;
+  text-decoration: none;
+}
+
+.input-group-text {
+  cursor: pointer;
+}
+
+.login-wrapper {
+  max-width: 400px;
+  width: 100%;
+}
+
+.forgot-wrapper h2 {
+  margin-bottom: 1rem;
+}
+
+.forgot-wrapper p {
+  color: #333;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.reset-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.reset-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.reset-left h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.reset-left p {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.reset-left .form-label {
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.reset-left .mb-3 {
+  margin-bottom: 1.2rem !important;
+}
+
+.reset-left input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.reset-left button {
+  width: 100%;
+  padding: 0.9rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.reset-right {
+  text-align: center;
+}
+
+.reset-right img {
+  max-width: 100%;
+  border-radius: 12px;
+  margin-bottom: 1.2rem;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .reset-wrapper {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .reset-left {
+    order: 1;
+  }
+
+  .reset-right {
+    order: 2;
+  }
+
+  .login-wrapper,
+  .forgot-wrapper,
+  .auth-card {
+    padding: 1.5rem;
+  }
+}
