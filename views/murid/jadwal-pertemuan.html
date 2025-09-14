@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jadwal Pertemuan - Yanqing</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f4f4f4; /* Warna latar belakang abu-abu muda */
+    }
+
+    /* --- Navbar --- */
+    .navbar-custom {
+      background-color: #a32821;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .navbar-custom .navbar-brand img {
+      height: 40px; /* Sedikit menyesuaikan ukuran logo */
+    }
+    .navbar-custom .nav-link {
+      color: #ffffff;
+      font-weight: 500;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px; /* Jarak antara ikon dan teks */
+    }
+    .navbar-custom .nav-link:hover,
+    .navbar-custom .nav-link.active {
+      color: #febc2f !important; /* Warna kuning untuk item aktif/hover */
+    }
+    .navbar-custom .dropdown-menu {
+      border-radius: 8px;
+    }
+
+    /* --- Content Card --- */
+    .content-card {
+      background-color: #ffffff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    /* --- Schedule Item --- */
+    .schedule-item {
+      display: flex;
+      align-items: center;
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+      background-color: #fff;
+      border-left: 5px solid #a32821; /* Garis merah di kiri */
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.07);
+    }
+    .schedule-item p {
+      margin-bottom: 0.25rem;
+    }
+    .schedule-item .info-label {
+      font-size: 0.85rem;
+      color: #6c757d; /* Warna abu-abu untuk label kecil */
+    }
+    .schedule-item .info-value {
+      font-weight: 600;
+      color: #343a40;
+    }
+
+    /* --- Buttons and Inputs --- */
+    .btn-custom-primary {
+      background-color: #a32821;
+      border-color: #a32821;
+      color: #fff;
+      font-weight: 600;
+    }
+    .btn-custom-primary:hover {
+      background-color: #8b221b;
+      border-color: #8b221b;
+      color: #fff;
+    }
+    .form-control-sm {
+        height: calc(1.5em + 0.5rem + 2px);
+    }
+
+    /* --- MODAL STYLES --- */
+    .modal-header.custom-header {
+      background-color: #a32821;
+      color: #ffffff;
+      border-bottom: none;
+    }
+    .custom-header .modal-title {
+      font-weight: 600;
+    }
+    .custom-header .btn-close {
+      filter: invert(1) grayscale(100) brightness(200%);
+    }
+    .modal-body .info-grid {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 0.5rem 1rem;
+      align-items: center;
+    }
+    .modal-body .info-grid dt {
+      font-weight: 600;
+      color: #495057;
+    }
+    .badge-private {
+      background-color: #0dcaf0;
+      padding: 0.4em 0.8em;
+      font-weight: 600;
+    }
+    .murid-card {
+      background-color: #f8f9fa;
+      border: 1px solid #dee2e6;
+      padding: 1rem;
+      border-radius: .5rem;
+    }
+    .btn-reschedule {
+        width: 100%;
+        color: #a32821;
+        border-color: #a32821;
+        font-weight: 600;
+    }
+    .btn-reschedule:hover {
+        background-color: #a32821;
+        color: #ffffff;
+    }
+    .btn-masuk-pertemuan {
+        width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="../../assets/img/logo-yanqing.png" alt="Logo Yanqing">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-house-door"></i> Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link active" href="#"><i class="bi bi-calendar-check"></i> Jadwal Pertemuan</a></li>
+          <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-camera-video"></i> Video Kelas</a></li>
+          <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-bar-chart"></i> Report Harian</a></li>
+          <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-book"></i> Materi Belajar</a></li>
+        </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-person-circle"></i> Chen Li
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Profil</a></li>
+              <li><a class="dropdown-item" href="#">Pengaturan</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="#">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container my-5">
+    <div class="content-card">
+      <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+        <h4 class="fw-bold mb-2 mb-md-0">Jadwal Pertemuan</h4>
+        <div class="d-flex align-items-center gap-2">
+          <label for="search" class="form-label mb-0 me-1">Cari:</label>
+          <input type="text" id="search" class="form-control form-control-sm" style="width: 150px;">
+          <button class="btn btn-custom-primary btn-sm">Filter Jadwal</button>
+        </div>
+      </div>
+
+      <div class="schedule-item row g-0">
+        <div class="col-lg-3 col-md-6 p-2">
+          <p class="info-label">Laoshi</p>
+          <p class="info-value">Wang ming</p>
+        </div>
+        <div class="col-lg-3 col-md-6 p-2">
+          <p class="info-label">Topik</p>
+          <p class="info-value">HSK Level 1</p>
+        </div>
+        <div class="col-lg-2 col-md-6 p-2">
+          <p class="info-value">Rabu, 21 Agustus</p>
+          <p class="info-label">09:00 - 10:00</p>
+        </div>
+        <div class="col-lg-2 col-md-6 p-2">
+          <p class="info-value">Pertemuan 3/3</p>
+          <p class="info-label">Mendatang</p>
+        </div>
+        <div class="col-lg-2 col-12 p-2 d-flex align-items-center justify-content-lg-end">
+            <a href="#" class="btn btn-custom-primary w-100 w-lg-auto" 
+            data-bs-toggle="modal" data-bs-target="#detailModal">
+            Lihat Detail
+         </a>
+        </div>
+      </div>
+
+      <div class="schedule-item row g-0">
+        <div class="col-lg-3 col-md-6 p-2">
+          <p class="info-label">Laoshi</p>
+          <p class="info-value">Wang ming</p>
+        </div>
+        <div class="col-lg-3 col-md-6 p-2">
+          <p class="info-label">Topik</p>
+          <p class="info-value">Conversation Practice</p>
+        </div>
+        <div class="col-lg-2 col-md-6 p-2">
+          <p class="info-value">Selasa, 20 Agustus</p>
+          <p class="info-label">09:00 - 10:00</p>
+        </div>
+        <div class="col-lg-2 col-md-6 p-2">
+          <p class="info-value">Pertemuan 2/3</p>
+          <p class="info-label">Masuk</p>
+        </div>
+        <div class="col-lg-2 col-12 p-2 d-flex align-items-center justify-content-lg-end">
+            <a href="#" class="btn btn-custom-primary w-100 w-lg-auto" 
+            data-bs-toggle="modal" data-bs-target="#detailModal">
+            Lihat Detail
+         </a>
+        </div>
+      </div>
+
+      <div class="schedule-item row g-0">
+        <div class="col-lg-3 col-md-6 p-2">
+          <p class="info-label">Laoshi</p>
+          <p class="info-value">Wang ming</p>
+        </div>
+        <div class="col-lg-3 col-md-6 p-2">
+          <p class="info-label">Topik</p>
+          <p class="info-value">Grammar Review</p>
+        </div>
+        <div class="col-lg-2 col-md-6 p-2">
+          <p class="info-value">Senin, 19 Agustus</p>
+          <p class="info-label">09:00 - 10:00</p>
+        </div>
+        <div class="col-lg-2 col-md-6 p-2">
+          <p class="info-value">Pertemuan 1/3</p>
+          <p class="info-label">Masuk</p>
+        </div>
+        <div class="col-lg-2 col-12 p-2 d-flex align-items-center justify-content-lg-end">
+            <a href="#" class="btn btn-custom-primary w-100 w-lg-auto" 
+            data-bs-toggle="modal" data-bs-target="#detailModal">
+            Lihat Detail
+         </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Detail Pertemuan -->
+<div class="modal fade" id="detailModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+      <div class="modal-content">
+  
+        <!-- Header -->
+        <div class="modal-header custom-header">
+          <h5 class="modal-title">Detail Pertemuan</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+  
+        <!-- Body -->
+        <div class="modal-body">
+          <h6 class="fw-bold mb-3">Informasi Pertemuan</h6>
+          <dl class="info-grid">
+            <dt>Tanggal</dt><dd>Selasa, 20 Agustus</dd>
+            <dt>Waktu</dt><dd>09:00 - 10:00</dd>
+            <dt>Topik</dt><dd>HSK Level 1</dd>
+            <dt>Laoshi</dt><dd>Wang Ming</dd>
+            <dt>Kelas</dt><dd><span class="badge badge-private">Private</span></dd>
+          </dl>
+  
+          <p class="fw-bold mt-3 mb-1">Link</p>
+          <a href="https://meet.google.com/onc-iwbb-bks" target="_blank">
+            https://meet.google.com/onc-iwbb-bks
+          </a>
+  
+          <h6 class="fw-bold mt-4">Detail Murid</h6>
+          <div class="murid-card">
+            <p class="mb-1 fw-bold">Chen Li</p>
+            <p class="mb-1">Progress Pertemuan 3/10</p>
+            <div class="progress mb-2" style="height: 8px;">
+              <div class="progress-bar bg-info" role="progressbar" style="width: 30%"></div>
+            </div>
+            <a href="#">Lihat Histori Report Harian</a>
+          </div>
+  
+          <h6 class="fw-bold mt-4">Status Absensi*</h6>
+          <div class="d-flex gap-3">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="absensi" id="tidakMasuk" checked>
+              <label class="form-check-label" for="tidakMasuk">Tidak Masuk</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="absensi" id="masuk">
+              <label class="form-check-label" for="masuk">Masuk</label>
+            </div>
+          </div>
+          <small class="text-muted">
+            Status absensi default <b>Tidak Masuk</b>. Jika klik Masuk Pertemuan, status otomatis berubah menjadi Masuk.
+          </small>
+        </div>
+  
+        <!-- Footer -->
+        <div class="modal-footer flex-column">
+            <button 
+            class="btn btn-custom-primary btn-masuk-pertemuan mb-2"
+            data-bs-target="#masukPertemuanModal" 
+            data-bs-toggle="modal" 
+            data-bs-dismiss="modal">
+            Masuk Pertemuan
+          </button>
+          
+          <button 
+  type="button" 
+  class="btn btn-outline-danger btn-reschedule" 
+  data-bs-target="#rescheduleModal" 
+  data-bs-toggle="modal" 
+  data-bs-dismiss="modal">
+  Reschedule
+</button>
+
+        </div>
+  
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Masuk Pertemuan -->
+<div class="modal fade" id="masukPertemuanModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+      <div class="modal-content">
+  
+        <div class="modal-header custom-header">
+          <h5 class="modal-title">Detail Pertemuan</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <div class="modal-body">
+          <h6 class="fw-bold mb-3">Informasi Pertemuan</h6>
+          <p><b>Tanggal:</b> Selasa, 20 Agustus</p>
+          <p><b>Waktu:</b> 09:00 - 10:00</p>
+          <p><b>Topik:</b> HSK Level 1</p>
+          <p><b>Laoshi:</b> Wang Ming</p>
+          <p><b>Kelas:</b> <span class="badge badge-private">Private</span></p>
+          <p><b>Absensi:</b> <span class="badge bg-success">Masuk</span></p>
+  
+          <h6 class="fw-bold mt-4">Detail Murid</h6>
+          <div class="murid-card">
+            <p class="fw-bold mb-1">Chen Li (Beginner)</p>
+            <p class="mb-1">Progress Pertemuan 3/10 (30%)</p>
+            <div class="progress mb-2" style="height: 8px;">
+              <div class="progress-bar bg-info" style="width: 30%"></div>
+            </div>
+            <a href="#">Lihat Histori Report Harian</a>
+          </div>
+  
+          <h6 class="fw-bold mt-4">Detail Report</h6>
+          <div class="murid-card">
+            <p class="fw-bold mb-1">Progress - Baik</p>
+            <p class="mb-0">Sudah menguasai 20 kosakata baru dengan baik</p>
+          </div>
+  
+          <h6 class="fw-bold mt-4">Video Kelas</h6>
+          <div class="murid-card">
+            <p class="fw-bold mb-1">Pembelajaran Kosakata Dasar</p>
+            <a href="#">Tonton Video</a>
+          </div>
+        </div> <!-- END modal-body -->
+  
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger w-100" data-bs-dismiss="modal">Tutup</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal Reschedule -->
+<div class="modal fade" id="rescheduleModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content">
+  
+        <!-- Header -->
+        <div class="modal-header custom-header">
+          <h5 class="modal-title">Ajukan Reschedule</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <!-- Body -->
+        <div class="modal-body p-3">
+          <div class="mb-2">
+            <label for="tanggalReschedule" class="form-label small">Tanggal*</label>
+            <input type="date" id="tanggalReschedule" class="form-control form-control-sm">
+          </div>
+          <div class="mb-2">
+            <label for="waktuReschedule" class="form-label small">Waktu Mulai*</label>
+            <input type="time" id="waktuReschedule" class="form-control form-control-sm">
+          </div>
+        </div>
+  
+        <!-- Footer -->
+        <div class="modal-footer p-2">
+          <button 
+            type="button" 
+            class="btn btn-custom-primary w-100 btn-sm"
+            data-bs-target="#successRescheduleModal"
+            data-bs-toggle="modal"
+            data-bs-dismiss="modal">
+            Ajukan Reschedule
+          </button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal Success Reschedule -->
+  <div class="modal fade" id="successRescheduleModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content text-center">
+  
+        <!-- Header -->
+        <div class="modal-header custom-header">
+          <h5 class="modal-title">Ajukan Reschedule</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <!-- Body -->
+        <div class="modal-body">
+          <i class="bi bi-envelope-fill" style="font-size:3rem; color:#a32821;"></i>
+          <h5 class="fw-bold mt-3">Berhasil Mengajukan</h5>
+          <p class="mb-0">Tunggu konfirmasi, informasi selanjutnya akan kami kirim melalui notifikasi email</p>
+        </div>
+  
+        <!-- Footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-custom-primary w-100" data-bs-dismiss="modal">Tutup</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Report Harian - Yanqing</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand:#a32821;
+      --card-bg:#ffffff;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f4f4f4;
+      color: #000;
+    }
+
+    /* Navbar */
+    .navbar-custom {
+      background-color: var(--brand);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    }
+    .navbar-custom .navbar-brand img { height: 40px; }
+    .navbar-custom .nav-link { color: #fff; font-weight:500; font-size:0.95rem; display:inline-flex; align-items:center; gap:8px; }
+    .navbar-custom .nav-link:hover,
+    .navbar-custom .nav-link.active { color: #febc2f !important; }
+    .navbar-custom .dropdown-menu { border-radius:8px; }
+
+    /* Card container */
+    .card.report-card { border-radius:10px; }
+
+    /* Search & filter */
+    .filter-row input.form-control {
+      min-width:200px;
+      max-width:260px;
+      height:36px;
+    }
+    .btn-filter {
+      background: var(--brand);
+      color: #fff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight:600;
+    }
+    .btn-filter:hover { background:#8b201a; }
+
+    /* List items */
+    .list-group {
+      gap: 8px;
+    }
+    .list-group-item {
+      display: flex;
+      align-items: stretch;
+      gap: 20px;
+      padding: 26px 20px;
+      border: none;
+      background: var(--card-bg);
+      border-radius: 6px;
+    }
+    /* garis vertikal kiri */
+    .item-indicator {
+      width: 8px;
+      border-radius: 8px;
+      background: var(--brand);
+      flex-shrink: 0;
+      margin-left: 6px;
+    }
+
+    /* content grid inside each item */
+    .report-row { width:100%; }
+    .report-row .label {
+      font-size: 0.90rem;
+      margin-bottom: 6px;
+      color:#000;
+    }
+    .report-row .value {
+      font-weight:700;
+      font-size: 1.05rem;
+      color:#000;
+    }
+
+    /* Progress badge */
+    .badge-progress {
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-weight:600;
+      font-size:0.95rem;
+    }
+    .badge-blue { background: #0d6efd; color:#fff; }
+    .badge-green { background: #28a745; color:#fff; }
+
+    /* note text */
+    .note-text { color:#000; font-size: 0.98rem; }
+
+    /* eye button style */
+    .btn-eye {
+      min-width:48px;
+      height:48px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:8px;
+      border: 1.5px solid var(--brand);
+      color: var(--brand);
+      background: transparent;
+    }
+    .btn-eye:hover {
+      background: var(--brand);
+      color:#fff;
+    }
+
+    @media (max-width: 991px) {
+      .report-row .value { font-size: 1rem; }
+      .list-group-item { padding: 18px 14px; }
+      .filter-row { justify-content: flex-start; gap:8px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><img src="../../assets/img/logo-yanqing.png" alt="Logo"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-house-door"></i> Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-calendar-check"></i> Jadwal Pertemuan</a></li>
+          <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-camera-video"></i> Video Kelas</a></li>
+          <li class="nav-item"><a class="nav-link active" href="#"><i class="bi bi-bar-chart"></i> Report Harian</a></li>
+          <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-book"></i> Materi Belajar</a></li>
+        </ul>
+
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-person-circle"></i> Chen Li
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Profil</a></li>
+              <li><a class="dropdown-item" href="#">Pengaturan</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="#">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Report Harian Section -->
+  <div class="container my-4">
+    <div class="card report-card shadow-sm p-4">
+      <h4 class="fw-bold mb-4">Report Harian</h4>
+
+      <!-- Search & Filter -->
+      <div class="d-flex filter-row justify-content-end align-items-center mb-4">
+        <label class="me-2 mb-0" for="searchInput">Cari:</label>
+        <input id="searchInput" type="text" class="form-control me-3" placeholder="Masukkan kata kunci">
+        <button class="btn btn-filter">Filter Report</button>
+      </div>
+
+      <!-- List -->
+      <div class="report-list-wrapper">
+        <div class="list-group">
+
+          <!-- item 1 -->
+          <div class="list-group-item">
+            <div class="item-indicator"></div>
+            <div class="report-row flex-grow-1">
+              <div class="row align-items-center gx-4">
+                <div class="col-lg-2 col-md-3">
+                  <div class="label">Murid</div>
+                  <div class="value">Chen Li</div>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                  <div class="label">Topik</div>
+                  <div class="value">HSK Level 1</div>
+                </div>
+                <div class="col-lg-2 col-md-2 text-center">
+                  <div class="label">Progress</div>
+                  <div class="mt-1"><span class="badge-progress badge-blue">Baik</span></div>
+                </div>
+                <div class="col-lg-4 col-md-3">
+                  <div class="label">Catatan</div>
+                  <div class="note-text">Sudah menguasai 20..</div>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <!-- Tambahkan trigger modal -->
+              <button class="btn-eye" data-bs-toggle="modal" data-bs-target="#detailReportModal"><i class="bi bi-eye"></i></button>
+            </div>
+          </div>
+
+          <!-- item 2 -->
+          <div class="list-group-item">
+            <div class="item-indicator"></div>
+            <div class="report-row flex-grow-1">
+              <div class="row align-items-center gx-4">
+                <div class="col-lg-2 col-md-3">
+                  <div class="label">Murid</div>
+                  <div class="value">Chen Li</div>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                  <div class="label">Topik</div>
+                  <div class="value">Conversation Practice</div>
+                </div>
+                <div class="col-lg-2 col-md-2 text-center">
+                  <div class="label">Progress</div>
+                  <div class="mt-1"><span class="badge-progress badge-green">Sangat Baik</span></div>
+                </div>
+                <div class="col-lg-4 col-md-3">
+                  <div class="label">Catatan</div>
+                  <div class="note-text">Pronunciation sudah..</div>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <button class="btn-eye" data-bs-toggle="modal" data-bs-target="#detailReportModal"><i class="bi bi-eye"></i></button>
+            </div>
+          </div>
+
+          <!-- item 3 -->
+          <div class="list-group-item">
+            <div class="item-indicator"></div>
+            <div class="report-row flex-grow-1">
+              <div class="row align-items-center gx-4">
+                <div class="col-lg-2 col-md-3">
+                  <div class="label">Murid</div>
+                  <div class="value">Chen Li</div>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                  <div class="label">Topik</div>
+                  <div class="value">Grammar Review</div>
+                </div>
+                <div class="col-lg-2 col-md-2 text-center">
+                  <div class="label">Progress</div>
+                  <div class="mt-1"><span class="badge-progress badge-blue">Baik</span></div>
+                </div>
+                <div class="col-lg-4 col-md-3">
+                  <div class="label">Catatan</div>
+                  <div class="note-text">Hari, Tanggal — Grammar Review sudah..</div>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <button class="btn-eye" data-bs-toggle="modal" data-bs-target="#detailReportModal"><i class="bi bi-eye"></i></button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Modal Detail Report -->
+  <div class="modal fade" id="detailReportModal" tabindex="-1" aria-labelledby="detailReportLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+      <div class="modal-content rounded-4 overflow-hidden">
+        
+        <!-- Header -->
+        <div class="modal-header text-white" style="background-color: var(--brand);">
+          <h5 class="modal-title fw-bold" id="detailReportLabel">Detail Report</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+  
+        <!-- Body -->
+        <div class="modal-body">
+          <!-- Informasi Report -->
+          <h5 class="fw-bold mb-3">Informasi Report</h5>
+          <div class="row mb-2">
+            <div class="col-5 fw-bold">Tanggal :</div>
+            <div class="col">Selasa, 20 Agustus</div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-5 fw-bold">Waktu :</div>
+            <div class="col">09:00 - 10:00</div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-5 fw-bold">Topik :</div>
+            <div class="col">HSK Level 1</div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-5 fw-bold">Laoshi :</div>
+            <div class="col">Wang Ming</div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-5 fw-bold">Kelas :</div>
+            <div class="col">
+              <span class="badge bg-info text-white px-3 py-2 rounded-pill">Private</span>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-5 fw-bold">Murid :</div>
+            <div class="col">Wang Ming</div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-5 fw-bold">Level Murid :</div>
+            <div class="col">Beginner</div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-5 fw-bold">Progress :</div>
+            <div class="col">
+              <span class="badge bg-primary text-white px-3 py-2 rounded-pill">Baik</span>
+            </div>
+          </div>
+  
+          <!-- Catatan -->
+          <h6 class="fw-bold mt-4">Catatan Pembelajaran</h6>
+          <div class="border rounded p-3 mb-4">
+            Sudah menguasai 20 kosakata baru dengan baik
+          </div>
+  
+          <!-- Materi -->
+          <h6 class="fw-bold">Materi yang Diajarkan</h6>
+          <div class="border rounded p-3">
+            Pembelajaran Kosakata Dasar
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
